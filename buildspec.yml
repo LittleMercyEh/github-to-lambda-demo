@@ -5,16 +5,16 @@ phases:
       python: 3.12
     commands:
       - echo "Installing dependencies..."
-      - pip install -r requirements.txt -t lib
+      - pip install -r requirements.txt -t github-to-lambda-demo
   build:
     commands:
       - echo "Zipping deployment package..."
-      - cd lib
+      - cd github-to-lambda-demo
       - zip -r9 ../deployment_package.zip .
       - cd ..
       - zip -g deployment_package.zip lambda_function.py
   post_build:
     commands:
       - echo "Updating lambda Function..."
-      - aws lambda update-function-code --function-name github-to-lambda-demo --zip-file fileb://deployment_package.zip
+      - aws lambda update-function-code --function-ARN arn:aws:lambda:us-west-2:654654269701:function:github-to-lambda-demo --zip-file fileb://deployment_package.zip
       - echo "DONE!!"
