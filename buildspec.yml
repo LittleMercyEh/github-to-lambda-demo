@@ -1,12 +1,13 @@
 version: 0.2
 phases:
   install:
+    runtime-versions:
+      python: 3.12 # Adjust this to a valid Python runtime version
     commands:
       - echo "Installing dependencies..."
       - pip install -r requirements.txt -t ./github-to-lambda-demo
   build:
-    runtime-versions:
-      python: 3.8 # Adjust this to a valid Python runtime version
+    
     commands:
       - echo "Zipping deployment package..."
       - cd github-to-lambda-demo
